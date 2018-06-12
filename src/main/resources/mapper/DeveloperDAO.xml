@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.niuyi.soft.ssmsample.dao.DeveloperDAO">
+    <!-- ⽬的：为 dao 接⼝⽅法提供 sql 语句配置 -->
+
+    <!--resultType为返回值类型-->
+    <!--parameterType为参数类型（可选）-->
+    <!--#{}中为填写的方法参数-->
+
+    <!--添加用户-->
+    <!--ignore忽略主键冲突报错-->
+    <insert id="addDeveloper">
+        INSERT ignore INTO developer(name,site,avatar) VALUES (#{name},#{site},#{avatar})
+    </insert>
+
+    <!--删除用户-->
+    <delete id="deleteDeveloper" parameterType="String">
+        DELETE FROM developer WHERE id = #{id}
+    </delete>
+
+    <!--修改用户-->
+    <update id="updateDeveloper">
+        UPDATE developer SET name = #{name} WHERE id = #{id}
+    </update>
+
+    <!--查询所有用户-->
+    <select id="getAllDevelopers" resultType="DeveloperModel">
+        SELECT * FROM developer
+    </select>
+
+    <!--查询某一个用户-->
+    <select id="getDeveloper" resultType="DeveloperModel" parameterType="String">
+        SELECT * FROM developer WHERE id = #{id}
+    </select>
+
+</mapper>
+
